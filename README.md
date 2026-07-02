@@ -152,7 +152,7 @@ dotnet watch
 ### First Request
 
 ```
-GET /api/products
+GET /api/products/promotions/{id}
 ```
 
 Result:
@@ -164,7 +164,7 @@ Result:
 ### Second Request
 
 ```
-GET /api/products
+GET /api/products/promotions/{id}
 ```
 
 Result:
@@ -189,11 +189,8 @@ The second request should be significantly faster.
 
 ## Possible Improvements
 
-* Cache expiration (TTL)
-* Cache invalidation on updates
 * Distributed cache support
 * Generic cache service
-* Logging cache hits and misses
 * Metrics with Prometheus/Grafana
 * Background cache warming
 
