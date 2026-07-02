@@ -1,5 +1,3 @@
-using RedisCacheAsideTest.DTOs;
-
 namespace RedisCacheAsideTest.Models.interfaces;
 
 public interface IPromotionProductsCacheService

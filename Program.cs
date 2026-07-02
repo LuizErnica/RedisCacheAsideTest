@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<IPromotionProductsCacheService, PromotionProductsCacheService>();
+// builder.Services.AddScoped<IPromotionProductsCacheService, PromotionProductsCacheService>();
 
 var sqliteConnectionString =
     builder.Configuration.GetConnectionString("Sqlite") ?? "Data Source=products.db";
@@ -40,7 +40,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureDeleted();
+    // db.Database.EnsureDeleted();
     db.Database.EnsureCreated();
 
     if (!db.Products.Any()) // Just for test purposes.

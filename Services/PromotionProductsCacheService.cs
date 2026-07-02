@@ -10,11 +10,11 @@ namespace RedisCacheAsideTest.Services;
 public class PromotionProductsCacheService : IPromotionProductsCacheService
 {
     // Unique key for the complete list of products on sale
-    private const string ListCacheKey = "products:promotion:list";
+    private const string ListCacheKey = "products:promotions:list";
 
     // Key per individual product (useful if you also want to
     // fetch/invalidate a specific product)
-    private const string ItemCacheKeyPrefix = "products:promotion:item:";
+    private const string ItemCacheKeyPrefix = "products:promotions:item:";
 
     private static readonly TimeSpan Ttl = TimeSpan.FromMinutes(5);
 
@@ -72,8 +72,11 @@ public class PromotionProductsCacheService : IPromotionProductsCacheService
         RedisValue cached = await cache.StringGetAsync(key);
         if (cached.HasValue)
         {
+            _logger.LogInformation("Cache HIT: {Key}", key);
             return JsonSerializer.Deserialize<Product>((string)cached!);
         }
+
+        _logger.LogInformation("Cache MISS: {Key} — retrieve data from SQLite", key);
 
         var product = await _db.Products
             .AsNoTracking()

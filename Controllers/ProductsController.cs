@@ -89,15 +89,15 @@ public class ProductsController : ControllerBase
     }
 
     // PROMOTION INVALIDATE
-    [HttpPost("/promotion/invalidate")]
-    public async Task<IActionResult> Invalidate(PromotionProductsCacheService cacheService)
+    [HttpPost("promotions/invalidate/{id}")]
+    public async Task<IActionResult> Invalidate(int id, PromotionProductsCacheService cacheService)
     {
-        await cacheService.InvalidateAsync();
+        await cacheService.InvalidateAsync(id);
         return NoContent();
     }
 
     // PROMOTION READ ALL
-    [HttpGet("/promotion")]
+    [HttpGet("promotions")]
     public async Task<IActionResult> GetAllPromotion(PromotionProductsCacheService cacheService)
     {
         var products = await cacheService.GetPromotionProductsAsync();
@@ -105,7 +105,7 @@ public class ProductsController : ControllerBase
     }
 
     // PROMOTION READ ALL BY ID
-    [HttpGet("/promotion/{id}")]
+    [HttpGet("promotions/{id}")]
     public async Task<IActionResult> GetAllPromotion(int id, PromotionProductsCacheService cacheService)
     {
         var product = await cacheService.GetPromotionProductByIdAsync(id);
@@ -113,7 +113,7 @@ public class ProductsController : ControllerBase
     }
 
     // UPDATE
-    [HttpPut("/promotion/{id}")]
+    [HttpPut("promotions/{id}")]
     public async Task<IActionResult> UpdatePromotionFlag(    
         int id,
         bool isPromotion,
