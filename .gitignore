@@ -3,6 +3,8 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# user defined files
+*.db
 *.zip
 
 # dotenv files
