@@ -147,6 +147,40 @@ dotnet watch
 
 ---
 
+### 6. Tests
+
+Swagger documentation and tests:
+
+```Swagger
+[dotnet run](http://localhost:5045/swagger/index.html)
+```
+
+Useful commands on Redis CLI tool:
+
+```Redis
+127.0.0.1:6379> ttl products:promotions:item:3
+(integer) 153
+
+127.0.0.1:6379> info keyspace
+# Keyspace
+db0:keys=1,expires=1,avg_ttl=78145,subexpiry=0
+
+127.0.0.1:6379> keys *
+1) "products:promotions:item:3"
+
+127.0.0.1:6379> GET products:promotions:item:3
+"{\"Id\":3,\"Name\":\"Fone Bluetooth\",\"Price\":159.9,\"Stock\":300,\"IsPromotion\":true}"
+
+127.0.0.1:6379> keys *
+1) "products:promotions:list"
+
+127.0.0.1:6379> GET products:promotions:list
+"[{\"Id\":1,\"Name\":\"T\\u00EAnis Runner X\",\"Price\":299.9,\"Stock\":100,\"IsPromotion\":true},{\"Id\":3,\"Name\":\"Fone Bluetooth\",\"Price\":159.9,\"Stock\":300,\"IsPromotion\":true}]"
+
+```
+
+---
+
 ## Testing the Cache
 
 ### First Request
