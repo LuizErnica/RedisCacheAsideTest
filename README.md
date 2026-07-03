@@ -104,7 +104,8 @@ Make sure Redis is running locally.
 Default configuration:
 
 ```json
-"Redis": {
+"Redis":
+{
   "ConnectionString": "localhost:6379"
 }
 ```
